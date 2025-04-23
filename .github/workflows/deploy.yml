@@ -28,4 +28,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: sanjeev1209/naturego.lk:latest
+          tags: docker push sanjeev1209/sanjeev:tagname
+
