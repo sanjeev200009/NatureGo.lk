@@ -16,6 +16,7 @@ export function Navbar() {
     { name: 'Home', path: '/' },
     { name: 'Destinations', path: '/destinations' },
     { name: 'Contact', path: '/contact' },
+    { name: 'Resources', path: '/resources' }
   ];
   
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
