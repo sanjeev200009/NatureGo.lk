@@ -1,17 +1,19 @@
-# Stage 1: Build the application
-FROM node:18-alpine AS builder
+
+FROM node:18
+
 
 WORKDIR /app
+
 COPY package*.json ./
-RUN npm install --no-audit
+
+
+RUN npm install --legacy-peer-deps
+
+
 COPY . .
-RUN npm run build
 
-# Stage 2: Serve the built application
-FROM node:18-alpine
-
-WORKDIR /app
-COPY --from=builder /app /app
 
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+
+
+CMD ["npm", "start"]
