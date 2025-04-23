@@ -25,8 +25,11 @@ jobs:
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: docker push sanjeev1209/sanjeev:tagname
+          tags: sanjeev1209/sanjeev:tagname
+
 
