@@ -1,0 +1,30 @@
+name: SLA Monitoring
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  check-sla:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label issues older than 7 days
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const issues = await github.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            for (const issue of issues.data) {
+              if (new Date(issue.created_at) < sevenDaysAgo && issue.state === 'open') {
+                await github.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  labels: ['sla-overdue'],
+                });
+              }
+            }
