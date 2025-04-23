@@ -34,8 +34,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
+        <BrowserRouter basename="/NatureGo.lk">
+        <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
               <Routes>
