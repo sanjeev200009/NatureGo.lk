@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "homepage": "https://sanjeev200009.github.io/NatureGo.lk",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
