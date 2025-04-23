@@ -20,13 +20,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies (with legacy peer deps)
-        run: npm ci --legacy-peer-deps
-
-      - name: Run security audit (ignore moderate issues)
-        run: |
-          npm audit --audit-level=high || echo "Ignoring audit failures"
-
       - name: Build Docker image
         run: |
           docker build -t my-app .
