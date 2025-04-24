@@ -25,6 +25,7 @@ import Subscribe from "./pages/Subscribe";
 import Dashboard from "./pages/Dashboard";
 import BookingForm from "./pages/BookingForm";
 
+
 const queryClient = new QueryClient();
 
 const App = () => (

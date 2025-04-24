@@ -55,7 +55,7 @@ const mockBookmarks = [
 ];
 
 const Dashboard = () => {
-  const { user, status, signOut } = useAuth();
+  const { user, status,logout } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
   const [isLoading, setIsLoading] = useState(true);
@@ -76,8 +76,8 @@ const Dashboard = () => {
   }, [status, navigate]);
 
   const handleSignOut = () => {
-    if (signOut) {
-      signOut();
+    if (logout) {
+      logout();
       navigate('/');
     }
   };
