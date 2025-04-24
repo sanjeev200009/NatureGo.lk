@@ -24,6 +24,7 @@ import BlogPost from "./pages/BlogPost";
 import Subscribe from "./pages/Subscribe";
 import Dashboard from "./pages/Dashboard";
 import BookingForm from "./pages/BookingForm";
+import Resources from './pages/Resources';
 
 
 const queryClient = new QueryClient();
@@ -34,8 +35,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
+        <BrowserRouter basename="/NatureGo.lk">
+        <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
               <Routes>
@@ -56,6 +57,7 @@ const App = () => (
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/confirmation" element={<BookingConfirmation />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/resources" element={<Resources />} />
               </Routes>
             </main>
             <Footer />
