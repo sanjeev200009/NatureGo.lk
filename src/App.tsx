@@ -15,7 +15,7 @@ import Bookmarks from "./pages/Bookmarks";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Bookings from "./pages/Bookings";
-import BookingDetail from "./pages/BookingDetail";
+
 import Checkout from "./pages/Checkout";
 import BookingConfirmation from "./pages/BookingConfirmation";
 import About from "./pages/About";
@@ -34,7 +34,6 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename="/NatureGo.lk">
         <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
@@ -61,7 +60,6 @@ const App = () => (
             </main>
             <Footer />
           </div>
-        </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
