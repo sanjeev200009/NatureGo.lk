@@ -22,7 +22,7 @@ export function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button asChild size="lg" className="bg-white text-eco-green-dark hover:bg-gray-100">
                 <Link to="/destinations">
-                  Explore Destinations
+                  Explore Destinations !
                   <ArrowRight size={18} className="ml-2" />
                 </Link>
               </Button>
