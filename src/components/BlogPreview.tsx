@@ -127,7 +127,7 @@ export function BlogPreview() {
             to="/blog"
             className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-md transition-colors inline-flex items-center font-medium"
           >
-            View all articles l
+            View all articles 1
             <ArrowRight size={16} className="ml-2" />
           </Link>
         </div>
