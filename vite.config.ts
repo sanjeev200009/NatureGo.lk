@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/NatureGo.lk/' : '/',
   server: {
     host: "::",
-    port: 3000,
+    port: 8000,
   },
   plugins: [
     react(),
