@@ -56,8 +56,9 @@ const App = () => (
                 <Route path="/book/:id" element={<BookingForm />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/confirmation" element={<BookingConfirmation />} />
-                <Route path="*" element={<NotFound />} />
                 <Route path="/resources" element={<Resources />} />
+                <Route path="/resources/:id" element={<Resources />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
