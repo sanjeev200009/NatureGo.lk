@@ -1,3 +1,27 @@
+# Dependencies
+node_modules/
+*/node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Production builds
+/dist
+/build
+*/dist/
+*/build/
+
+# Environment variables - IMPORTANT!
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+backend/.env
+backend/.env.local
+
 # Logs
 logs
 *.log
@@ -7,10 +31,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +47,32 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OS generated files
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads and cache
+uploads/
+public/uploads/
+.cache/
+.parcel-cache
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Optional npm cache
+.npm
+.eslintcache

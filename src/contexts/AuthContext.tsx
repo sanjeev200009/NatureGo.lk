@@ -1,24 +1,17 @@
 
 import { createContext, useState, useContext, useEffect, ReactNode } from "react";
 import { User, AuthStatus } from "@/types";
+import { authAPI, RegisterData, LoginData } from "@/services/api";
 
 interface AuthContextType {
   user: User | null;
   status: AuthStatus;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string, preferences?: any) => Promise<void>;
   logout: () => void;
   toggleBookmark: (destinationId: string) => void;
   isBookmarked: (destinationId: string) => boolean;
 }
-
-// Create a mock user for demo purposes
-const mockUser: User = {
-  id: "user1",
-  email: "demo@ecotrail.lk",
-  name: "Demo User",
-  bookmarks: ["1", "4"],
-};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -28,31 +21,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Check for existing session on load
   useEffect(() => {
-    const storedUser = localStorage.getItem("ecotrail-user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setStatus("authenticated");
-    } else {
-      setStatus("unauthenticated");
-    }
+    const checkAuth = async () => {
+      const storedToken = localStorage.getItem("naturego-token");
+      const storedUser = localStorage.getItem("naturego-user");
+      
+      if (storedToken && storedUser) {
+        try {
+          // Verify token is still valid by fetching profile
+          const response = await authAPI.getProfile();
+          setUser(response.data.user);
+          setStatus("authenticated");
+        } catch (error) {
+          // Token invalid, clear storage
+          localStorage.removeItem("naturego-token");
+          localStorage.removeItem("naturego-user");
+          setStatus("unauthenticated");
+        }
+      } else {
+        setStatus("unauthenticated");
+      }
+    };
+
+    checkAuth();
   }, []);
 
   // Login function
   const login = async (email: string, password: string) => {
-    // In a real app, this would call your authentication API
     setStatus("loading");
     try {
-      // Mock API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const loginData: LoginData = { email, password };
+      const response = await authAPI.login(loginData);
       
-      // Demo validation (in real app, this would be server-side)
-      if (email === "demo@ecotrail.lk" && password === "password") {
-        setUser(mockUser);
-        localStorage.setItem("ecotrail-user", JSON.stringify(mockUser));
-        setStatus("authenticated");
-      } else {
-        throw new Error("Invalid credentials");
-      }
+      // Store token and user data
+      localStorage.setItem("naturego-token", response.data.token);
+      localStorage.setItem("naturego-user", JSON.stringify(response.data.user));
+      
+      setUser(response.data.user);
+      setStatus("authenticated");
     } catch (error) {
       console.error("Login failed:", error);
       setStatus("unauthenticated");
@@ -61,22 +66,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Register function
-  const register = async (name: string, email: string, password: string) => {
-    // In a real app, this would call your registration API
+  const register = async (name: string, email: string, password: string, preferences?: any) => {
     setStatus("loading");
     try {
-      // Mock API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      const newUser: User = {
-        id: `user${Date.now()}`,
-        email,
+      const registerData: RegisterData = {
         name,
-        bookmarks: [],
+        email,
+        password,
+        preferences: preferences || {
+          budget: 'mid-range',
+          activities: [],
+          ecoFriendly: true
+        }
       };
       
-      setUser(newUser);
-      localStorage.setItem("ecotrail-user", JSON.stringify(newUser));
+      const response = await authAPI.register(registerData);
+      
+      // Store token and user data
+      localStorage.setItem("naturego-token", response.data.token);
+      localStorage.setItem("naturego-user", JSON.stringify(response.data.user));
+      
+      setUser(response.data.user);
       setStatus("authenticated");
     } catch (error) {
       console.error("Registration failed:", error);
@@ -86,10 +96,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Logout function
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("ecotrail-user");
-    setStatus("unauthenticated");
+  const logout = async () => {
+    try {
+      await authAPI.logout();
+    } catch (error) {
+      console.error("Logout API call failed:", error);
+    } finally {
+      setUser(null);
+      setStatus("unauthenticated");
+      localStorage.removeItem("naturego-token");
+      localStorage.removeItem("naturego-user");
+    }
   };
 
   // Bookmark toggle function
@@ -106,7 +123,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     
     const updatedUser = { ...user, bookmarks: updatedBookmarks };
     setUser(updatedUser);
-    localStorage.setItem("ecotrail-user", JSON.stringify(updatedUser));
+    localStorage.setItem("naturego-user", JSON.stringify(updatedUser));
   };
 
   // Check if a destination is bookmarked
