@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Frontend to GitHub Pages
 
 on:
   push:
@@ -31,13 +31,15 @@ jobs:
         node-version: '20'
         cache: 'npm'
 
-    - name: Clean install dependencies
+    - name: Install frontend dependencies
       run: |
-        rm -rf node_modules package-lock.json
+        cd frontend
         npm install --legacy-peer-deps
 
-    - name: Build project
-      run: npm run build
+    - name: Build frontend
+      run: |
+        cd frontend
+        npm run build
 
     - name: Setup Pages
       uses: actions/configure-pages@v5

@@ -2,6 +2,13 @@
 
 A comprehensive eco-tourism platform showcasing Sri Lanka's natural beauty while promoting sustainable travel practices.
 
+## 🌍 **Live Demo**
+
+🎨 **Frontend**: https://sanjeev200009.github.io/NatureGo.lk/ (GitHub Pages)  
+🔧 **Backend**: *To be deployed separately*
+
+> **Note**: The frontend is currently deployed as a static site on GitHub Pages. The backend will need to be deployed to a Node.js hosting service for full functionality.
+
 ## 📁 Project Structure
 
 ```
@@ -139,17 +146,36 @@ npm run dev
 
 ## 📦 Deployment
 
-### Frontend (Netlify/Vercel)
+### Frontend (GitHub Pages)
+The frontend is automatically deployed to GitHub Pages on every push to main:
+- **Live URL**: https://sanjeev200009.github.io/NatureGo.lk/
+- **Auto-deployment**: Configured via GitHub Actions
+- **Build**: Frontend-only static files
+
 ```bash
+# Manual frontend build for testing
 npm run frontend:build
-# Deploy dist/ folder
 ```
 
-### Backend (Railway/Render/Heroku)
+### Backend (Separate Deployment Required)
+The backend needs to be deployed to a Node.js hosting service:
+
+**Recommended platforms:**
+- Railway
+- Render
+- Heroku
+- DigitalOcean App Platform
+
 ```bash
+# Prepare backend for deployment
 npm run backend:build
 # Deploy with start command: npm run backend:start
 ```
+
+**Backend Environment Variables Required:**
+- `MONGODB_URI` - MongoDB connection string
+- `JWT_SECRET` - JWT signing secret
+- `NODE_ENV=production`
 
 ## 🧪 Testing
 
