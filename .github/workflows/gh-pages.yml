@@ -30,10 +30,17 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Clear npm cache
+      run: npm cache clean --force
+
     - name: Install and Build
       working-directory: ./frontend
       run: |
         echo "🔧 Installing dependencies..."
+        # Fix npm optional dependencies bug as suggested in error message
+        rm -rf node_modules package-lock.json
+        npm install
+        # Run npm install again as suggested for optional dependencies bug
         npm install
         echo "🏗️ Building frontend..."
         npm run build
