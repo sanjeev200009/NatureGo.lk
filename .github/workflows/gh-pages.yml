@@ -29,35 +29,19 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        # Temporarily disable cache due to npm optional dependencies bug
-        # cache: 'npm'
-        # cache-dependency-path: 'frontend/package-lock.json'
 
-    - name: Clear npm cache
-      run: npm cache clean --force
-
-    - name: Install frontend dependencies
+    - name: Install and Build
+      working-directory: ./frontend
       run: |
-        cd frontend
-        echo "Installing dependencies..."
-        # Remove node_modules and package-lock.json to fix npm optional dependencies bug
-        rm -rf node_modules package-lock.json
-        npm install --legacy-peer-deps
-        echo "Dependencies installed successfully"
-
-    - name: Build frontend
-      env:
-        NODE_ENV: production
-        VITE_API_URL: '' # Empty for now, will be set when backend is deployed
-      run: |
-        cd frontend
-        echo "Starting frontend build..."
+        echo "🔧 Installing dependencies..."
+        npm install
+        echo "🏗️ Building frontend..."
         npm run build
-        echo "Build completed successfully"
+        echo "✅ Build completed!"
         ls -la dist/
 
     - name: Setup Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v4
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
