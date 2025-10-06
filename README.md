@@ -1,262 +1,200 @@
-# 🌱 NatureGo.lk - Sri Lanka's Premier Eco-Tourism Platform
+# 🌿 NatureGo.lk - Sri Lanka's Premier Eco-Tourism Platform
 
-> Discover sustainable travel experiences across Sri Lanka with our full-stack eco-tourism platform.
+A comprehensive eco-tourism platform showcasing Sri Lanka's natural beauty while promoting sustainable travel practices.
 
-[![React](https://img.shields.io/badge/React-18.0-blue.svg)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green.svg)](https://mongodb.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-
-## 🌍 **Live Demo**
-
-- **Frontend**: [https://sanjeev200009.github.io/NatureGo.lk/](https://sanjeev200009.github.io/NatureGo.lk/)
-- **API Documentation**: Available in development mode
-
-## ✨ **Features**
-
-### 🔐 **Authentication System**
-- User registration and login with JWT tokens
-- Secure password hashing with bcrypt
-- Persistent session management
-- Profile management with eco-tourism preferences
-
-### 🏞️ **Destinations Management**
-- Browse Sri Lankan eco-destinations by province
-- Detailed destination information with sustainability ratings
-- Filter by categories (wildlife, nature, cultural, adventure)
-- User bookmarks and favorites
-
-### 📱 **Modern UI/UX**
-- Responsive design with Tailwind CSS  
-- Dark/light theme support
-- Interactive maps and image galleries
-- Mobile-first responsive design
-
-### 🚀 **Technical Excellence**
-- Full TypeScript support
-- RESTful API with Express.js
-- MongoDB with Mongoose ODM
-- Modern React with hooks and context
-- Production-ready deployment configuration
-
-## 🏗️ **Project Structure**
+## 📁 Project Structure
 
 ```
-eco-trail-explorer-lk/
-├── 🎯 Frontend (React + Vite + TypeScript)
-│   ├── src/components/     # Reusable UI components
-│   ├── src/pages/         # Page components  
-│   ├── src/services/      # API integration layer
-│   ├── src/contexts/      # React contexts (Auth, etc.)
-│   └── src/hooks/         # Custom React hooks
-│
-├── 🚀 Backend (Express.js + MongoDB)
-│   ├── src/controllers/   # Business logic
-│   ├── src/models/       # Database schemas
-│   ├── src/routes/       # API endpoints
-│   ├── src/middleware/   # Authentication & security
-│   └── src/config/       # Database configuration
-│
-└── 📄 Documentation & Configuration
-    ├── docs/            # Project documentation
-    ├── .github/         # GitHub Actions workflows
-    └── deployment configs
+NatureGo.lk/
+├── frontend/          # React + TypeScript frontend
+│   ├── src/          # Source code
+│   ├── public/       # Static assets
+│   ├── package.json  # Frontend dependencies
+│   └── ...
+├── backend/          # Node.js + Express backend
+│   ├── src/         # Source code
+│   ├── package.json # Backend dependencies
+│   └── .env         # Environment variables
+├── package.json     # Root workspace configuration
+├── .gitignore      # Git ignore rules
+└── README.md       # This file
 ```
 
-## 🚀 **Quick Start**
+## 🚀 Quick Start
 
-### **Prerequisites**
-- Node.js 18+ and npm
+### Prerequisites
+- Node.js 18+ 
+- npm 8+
 - MongoDB (local or cloud)
-- Git
 
-### **Installation**
+### Installation
 
 1. **Clone the repository**
-```bash
-git clone https://github.com/sanjeev200009/NatureGo.lk.git
-cd eco-trail-explorer-lk
-```
+   ```bash
+   git clone https://github.com/sanjeev200009/NatureGo.lk.git
+   cd NatureGo.lk
+   ```
 
-2. **Install dependencies**
-```bash
-npm run setup
-```
+2. **Install all dependencies**
+   ```bash
+   npm run setup
+   ```
 
 3. **Configure environment variables**
-```bash
-# Copy environment templates
-cp backend/.env.example backend/.env
-cp .env.example .env
-
-# Edit backend/.env with your MongoDB URI and secrets
-# Edit .env with your API URL
-```
+   ```bash
+   # Copy backend environment template
+   cp backend/.env.example backend/.env
+   # Edit backend/.env with your configuration
+   ```
 
 4. **Start development servers**
+   ```bash
+   npm run dev
+   ```
+
+This will start:
+- 🎨 Frontend: http://localhost:5173 (or next available port)
+- 🔧 Backend: http://localhost:5000
+
+## 📜 Available Scripts
+
+### Root Level Scripts
+- `npm run dev` - Start both frontend and backend in development mode
+- `npm run build` - Build both frontend and backend
+- `npm run start` - Start both in production mode
+- `npm run setup` - Install all dependencies
+- `npm run clean` - Clean all node_modules and build files
+
+### Frontend Scripts
+- `npm run frontend:dev` - Start frontend development server
+- `npm run frontend:build` - Build frontend for production
+- `npm run frontend:install` - Install frontend dependencies
+
+### Backend Scripts
+- `npm run backend:dev` - Start backend development server
+- `npm run backend:start` - Start backend in production mode
+- `npm run backend:install` - Install backend dependencies
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **React 18** - UI framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Radix UI** - Component library
+- **React Router** - Navigation
+- **Axios** - HTTP client
+
+### Backend
+- **Node.js** - Runtime
+- **Express** - Web framework
+- **MongoDB** - Database
+- **Mongoose** - ODM
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
+- **Cloudinary** - Image management
+
+## 🌍 Environment Variables
+
+### Backend (.env)
 ```bash
-npm run full:dev
-```
-
-This starts:
-- Frontend: http://localhost:5173/NatureGo.lk/
-- Backend API: http://localhost:5000/api/
-
-## 🛠️ **Available Scripts**
-
-### **Development**
-```bash
-npm run full:dev        # Run frontend + backend together
-npm run dev            # Frontend only (Vite)  
-npm run backend:dev    # Backend only (Express + nodemon)
-```
-
-### **Installation**
-```bash
-npm run setup          # Install all dependencies
-npm run full:install   # Install frontend + backend deps
-npm run backend:install # Install backend dependencies only
-```
-
-### **Production**
-```bash
-npm run build          # Build frontend for production
-npm run preview        # Preview production build
-npm run backend:start  # Start backend in production mode
-```
-
-## 🔧 **Environment Variables**
-
-### **Frontend (.env)**
-```env
-VITE_API_URL=http://localhost:5000/api
-VITE_APP_NAME=NatureGo.lk
-```
-
-### **Backend (backend/.env)**
-```env
-NODE_ENV=development
-PORT=5000
+# Database
 MONGODB_URI=mongodb://localhost:27017/naturego-lk
-JWT_SECRET=your-super-secret-jwt-key
+
+# Authentication
+JWT_SECRET=your-secret-key
 JWT_EXPIRE=7d
-FRONTEND_URL=http://localhost:5173
+
+# External Services
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+
+# Email (optional)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
 ```
 
-## 📡 **API Endpoints**
+## 🔧 Development
 
-### **Authentication**
-```
-POST   /api/auth/register    # User registration
-POST   /api/auth/login       # User login
-GET    /api/auth/profile     # Get user profile (protected)
-POST   /api/auth/logout      # User logout
-```
-
-### **Destinations**
-```
-GET    /api/destinations     # Get all destinations (with filters)
-GET    /api/destinations/:id # Get single destination
-POST   /api/destinations     # Create destination (protected)
-PUT    /api/destinations/:id # Update destination (protected)
-DELETE /api/destinations/:id # Delete destination (protected)
-```
-
-### **Health Check**
-```
-GET    /api/health          # Server health status
-```
-
-## 🗄️ **Database Models**
-
-### **User Model**
-- Authentication credentials
-- Eco-tourism preferences (budget, activities)
-- Bookmarks and travel history
-- Profile information
-
-### **Destination Model**
-- Sri Lankan provinces and districts
-- Sustainability ratings (1-10)
-- Activities and facilities
-- Location coordinates
-- Entry fees and best visiting times
-
-### **Booking Model** (Future Enhancement)
-- Comprehensive booking system
-- Payment integration ready
-- Eco-impact calculations
-
-## 🚀 **Deployment**
-
-### **Vercel (Frontend) + Railway (Backend)**
+### Frontend Development
 ```bash
-# Deploy frontend to Vercel
-vercel --prod
-
-# Deploy backend to Railway
-railway login
-railway init
-railway deploy
+cd frontend
+npm run dev
 ```
 
-### **Environment Setup for Production**
-1. Update `VITE_API_URL` to production backend URL
-2. Set production MongoDB URI (MongoDB Atlas recommended)
-3. Configure CORS for production domains
-4. Set secure JWT secrets
+### Backend Development
+```bash
+cd backend
+npm run dev
+```
 
-## 🔒 **Security Features**
+### Full Stack Development
+```bash
+# From root directory
+npm run dev
+```
 
-- **JWT Authentication**: Secure token-based authentication
-- **Password Hashing**: bcrypt with configurable rounds
-- **Rate Limiting**: API request throttling (100 req/15min)
-- **CORS Protection**: Configured for allowed origins
-- **Input Validation**: Comprehensive data validation
-- **Environment Security**: All secrets in environment variables
+## 📦 Deployment
 
-## 🧪 **Testing**
+### Frontend (Netlify/Vercel)
+```bash
+npm run frontend:build
+# Deploy dist/ folder
+```
+
+### Backend (Railway/Render/Heroku)
+```bash
+npm run backend:build
+# Deploy with start command: npm run backend:start
+```
+
+## 🧪 Testing
 
 ```bash
-# API Testing with the built-in tools
-npm run backend:dev    # Start backend
-# Use Postman or curl to test endpoints
+# Run backend tests
+npm run test
 
-# Frontend testing
-npm run dev           # Start frontend  
-# Test user registration, login, and navigation
+# Run frontend linting
+npm run lint
 ```
 
-## 📚 **Documentation**
+## 📖 Features
 
-- **Backend API**: See `/backend/README.md` for detailed API documentation
-- **Frontend Components**: TypeScript interfaces provide inline documentation
-- **Database Schema**: Check model files in `/backend/src/models/`
+- 🏞️ **Destination Discovery** - Explore eco-friendly destinations
+- 🏨 **Eco-Stay Bookings** - Book sustainable accommodations
+- 👤 **User Authentication** - Secure login and registration
+- 📱 **Responsive Design** - Mobile-first approach
+- 🔍 **Advanced Search** - Filter by location, activities, budget
+- 💚 **Sustainability Focus** - Eco-impact tracking
+- 📧 **Newsletter** - Stay updated with eco-tourism news
 
-## 🤝 **Contributing**
+## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 **License**
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 **Support**
+## 👨‍💻 Author
 
-- **Issues**: [GitHub Issues](https://github.com/sanjeev200009/NatureGo.lk/issues)
-- **Documentation**: Check `/docs` folder for detailed guides
-- **API Health**: Visit `/api/health` for backend status
+**Sanjeev**
+- GitHub: [@sanjeev200009](https://github.com/sanjeev200009)
 
-## 🌟 **Acknowledgments**
+## 🙏 Acknowledgments
 
-- Built for Sri Lanka's eco-tourism industry
-- Inspired by sustainable travel practices
-- Designed for modern web development standards
+- Sri Lanka Tourism Board
+- Local eco-tourism operators
+- Environmental conservation organizations
+- Open source community
 
 ---
 
-🌍 **Building sustainable tourism for Sri Lanka, one destination at a time!** 🇱🇰
+**Made with 💚 for sustainable tourism in Sri Lanka**
